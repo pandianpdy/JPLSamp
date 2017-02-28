@@ -1,0 +1,125 @@
+<html>
+	<head>
+		<title></title>
+		<style>
+			* {
+				margin:0;
+			}
+			.wrapper {
+				position:absolute;
+				width:100%;
+				height:100%;
+				background: #9f9f9f;
+			}
+			.headwrap {
+				height:15%;
+			}
+			.bodywrap {
+				height:70%;
+				//border:1px solid #fff;
+				box-shadow: 1px 1px 10px;
+			}
+			.footwrap {
+				height:15%;
+			}
+		
+			.lnav, .rnav {
+				width:10%;
+				height:100%;
+				//box-shadow: 1px 1px 10px;
+				float:left;
+				
+			}
+			.contentwap {
+				width:80%;
+				height:100%;
+				box-shadow: 1px 1px 10px;
+				float:left;				
+				border-radius: 8px;
+			}
+			.content {
+				text-align:center;
+				font-family:arial;
+				font-size: 14pt;
+				margin-top:20%;
+			}			
+			.nav {
+				width:10%
+				//height:40%;
+				padding:20px;
+				text-align:center;
+				font-family:arial;
+				font-size: 14pt;
+				margin-top:130%;
+				box-shadow: 1px 1px 10px;
+				cursor:pointer;
+			}						
+		</style>
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class="headwrap"></div>
+			<div class="bodywrap">
+				<div class="lnav">
+					<div class="nav" id="lnav"><</div>
+				</div>
+				<div class="contentwap">
+					<div class="content" id="content">A</div>
+				</div>
+				<div class="rnav">
+					<div class="nav" id="rnav" >></div>
+				</div>					
+			</div>
+			<div class="footwrap"></div>
+		</div>
+		
+		<script>
+			var lnav = document.getElementById("lnav");
+			var rnav = document.getElementById("rnav");
+			var content = document.getElementById("content");
+			var alpha = "ABCDEFGH";
+			var idx = 0;
+			var len = alpha.length-1;
+			alert(len);
+			content.innerText = alpha[idx];
+			lnav.addEventListener('click', function(){
+				
+				if(idx > 0){
+					idx--;
+					content.innerText = alpha[idx];
+				}
+			});
+			
+			rnav.addEventListener('click', function(){
+				
+				if(idx<len){
+					idx++;
+					content.innerText = alpha[idx];
+				}
+			});			
+			
+			
+			/*
+				//inputs  showDivs(1) or showDivs(-1)
+				var slideIndex = 1;
+				showDivs(slideIndex);
+
+				function plusDivs(n) {
+					showDivs(slideIndex += n);
+				}
+
+				function showDivs(n) {
+					var i;
+					var x = document.getElementsByClassName("mySlides");
+					if (n > x.length) {slideIndex = 1} 
+					if (n < 1) {slideIndex = x.length} ;
+					for (i = 0; i < x.length; i++) {
+						x[i].style.display = "none"; 
+					}
+					x[slideIndex-1].style.display = "block"; 
+				}			
+			*/
+		</script>
+	</body>
+</html>
