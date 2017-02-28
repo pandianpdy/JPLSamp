@@ -1,0 +1,147 @@
+<html>
+	<head>
+		<title></title>
+		<style>
+		
+			* {
+				margin:0;
+			}
+			.listwrap{
+				position:absolute;
+				border:1px solid #929292;
+				width:80%;
+				height:80%;
+				font-family: arial;
+				font-size: 14px;
+				
+			}
+			.headwrap {
+				height:10%;
+			}
+			.bodywrap {
+				border-top:1px solid #929292;
+				border-bottom:1px solid #929292;
+				height:82%;
+			}			
+			.footwrap{
+				height:5%;
+			}
+			
+			.lstwrap{
+				height:100%;
+				overflow:hidden;
+			}
+			
+			.hleft {
+				width:5%;
+				height:80%
+			}
+			.hcenter {
+				width:70%;
+				height:80%
+			}
+			.hright {
+				width:20%;
+				height:80%
+			}			
+			
+			input {
+				width:100%;
+				height:100%
+				font-family: arial;
+				font-size: 15px;				
+				padding:3px;
+				margin:7px;
+			}
+
+			.bodywrap ul {
+				list-style:none;
+				margin:0;
+				padding:0;
+			}
+
+			.bodywrap li{
+				border-bottom:1px solid #929292;
+				padding:5px;
+			}
+			
+			.bdr {
+				border:1px solid #ff00ff;
+			}
+			.keepleft {
+				float:left;
+			}
+
+			.clr {
+				clear:both;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="listwrap">
+			<div class="headwrap" >
+				<div class="hleft keepleft "><input type="hidden" id="txthide" name="txthide"  /></div>
+				<div class="hcenter keepleft "><input type="text" id="txtbox" name="txtitem" placeholder="Enter List Items"  /></div>			
+				<div class="hright keepleft "><input type="button" id="btnOK" name="btnOK" value="OK" /></div>				
+			</div>
+			<div class="bodywrap clr">
+				<div class="lstwrap">
+					<ul id="lstbox">
+						<li>One</li>
+						<li>Two</li>
+					</ul>
+				</div>				
+			</div>
+			<div class="footwrap"></div>
+		</div>
+		
+			
+		<script>
+			/*
+				<element onclick="myScript">
+				object.onclick = function(){myScript};
+				object.addEventListener("click", myScript);
+				getElementById('demo').innerHTML = Date()
+				document.getElementById("demo").style.color = "red";
+				document.getElementById("field2").value = document.getElementById("field1").value;
+				document.getElementsByTagName("BODY")[0].style.backgroundColor = "yellow";
+				document.getElementById("myDropdown").classList.toggle("show");
+				ondblclick event
+				onmousedown event
+				onmouseup event
+			*/
+			var txtbox = document.getElementById("txtbox");
+			var lstbox = document.getElementById("lstbox");
+			var btnOK = document.getElementById("btnOK");
+			btnOK.addEventListener("click", AddItem());
+			
+			txtbox.addEventListener("keydown", function(e) {
+				if(e.keyCode == 13){
+					AddItem();
+				}
+			});
+			
+			function AddItem(){
+				//alert(txtbox.value);
+				if(txtbox.value != ""){
+					var li = document.createElement("li");
+					var t = document.createTextNode(txtbox.value);
+					li.appendChild(t);                                
+					lstbox.appendChild(li);  
+					txtbox.value = "";
+					
+				}
+				txtbox.focus();
+			}			
+			
+ /*
+			
+			var code = (e.keyCode ? e.keyCode : e.which);
+if(code == 13) { //Enter keycode
+    alert('enter press');
+}
+*/
+		</script>
+	</body>
+</html>
