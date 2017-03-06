@@ -1,0 +1,534 @@
+difference between Applets and Swing?
+	An applet is a small component written in Java that can be included or "plugged" into an HTML page or other markup language page. Swing is a framework for developing the graphical user interface (GUI) for Java applications and applets.
+
+
+	JLabel
+	JButton
+	JCheck Box
+	JRadioButton
+	JList
+	JComboBox
+	JTextField
+	JPasswordField
+	JTextArea
+
+	ImageIcon
+	JSlider
+	JSpinner
+	JScrollbar
+	JProgressBar
+	JOptionPane
+	JFileChooser
+	JColorChooser
+
+Types of Event
+	Foreground Events
+	Background Events
+
+SWING Event Classes
+
+	KeyEvent
+	MouseEvent
+	MouseMotionEvent
+	WindowEvent
+
+	ActionEvent
+	AdjustmentEvent
+	ComponentEvent
+	ContainerEvent
+
+	AWTEvent
+	InputEvent
+	PaintEvent
+
+
+SWING Event Listener Interfaces
+
+	FocusListener
+	KeyListener
+	MouseListener
+	MouseMotionListener
+	WindowListener
+
+	ActionListener
+	AdjustmentListener
+	ItemListener
+	ComponentListener
+	ContainerListener
+
+SWING Adapters
+
+	FocusAdapter
+	KeyAdapter
+	MouseAdapter
+	MouseMotionAdapter
+	WindowAdapter
+
+AWT Layout Manager Classes
+
+	BorderLayout
+	CardLayout
+	FlowLayout
+	GridLayout
+	GridBagLayout
+	GroupLayout
+	SpringLayout
+
+
+Menu Controls
+
+	JMenu
+	JMenuBar
+	JMenuItem
+	JCheckboxMenuItem
+	JRadioButtonMenuItem
+	JPopupMenu
+
+
+SWING Containers
+
+	Panel
+	Frame
+	Window
+
+
+
+----------------------------------------
+
+
+private JFrame mainFrame;
+private JLabel headerLabel;
+private JPanel controlPanel;
+
+headerLabel = new JLabel("", JLabel.CENTER);  
+controlPanel = new JPanel();
+controlPanel.setLayout(new FlowLayout());
+
+mainFrame.add(headerLabel);
+
+ mainFrame = new JFrame("Java Swing Examples");
+      mainFrame.setSize(400,400);
+      mainFrame.setLayout(new GridLayout(3, 1));
+      
+      mainFrame.addWindowListener(new WindowAdapter() {
+         public void windowClosing(WindowEvent windowEvent){
+            System.exit(0);
+         }        
+      });    
+
+mainFrame.add(headerLabel);
+
+ headerLabel.setText("Control in action: JLabel");      
+      JLabel label  = new JLabel("", JLabel.CENTER);        
+      label.setText("Welcome to TutorialsPoint Swing Tutorial.");
+      label.setOpaque(true);
+      label.setBackground(Color.GRAY);
+      label.setForeground(Color.WHITE);
+      controlPanel.add(label);
+      
+      mainFrame.setVisible(true);  
+
+   JButton okButton = new JButton("OK");        
+      JButton javaButton = new JButton("Submit", icon);
+      JButton cancelButton = new JButton("Cancel", icon);
+      cancelButton.setHorizontalTextPosition(SwingConstants.LEFT);   
+
+      okButton.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            statusLabel.setText("Ok Button clicked.");
+         }          
+      });
+
+
+
+final JTextField userText = new JTextField(6);
+final JPasswordField passwordText = new JPasswordField(6);   
+String data = "Username " + userText.getText();
+data += ", Password: " + new String(passwordText.getPassword()); 
+ 
+final JTextArea commentTextArea =  new JTextArea("This is a Swing tutorial " + "to make GUI application in Java.",5,20);
+JScrollPane scrollPane = new JScrollPane(commentTextArea);    
+JButton showButton = new JButton("Show");
+
+final JRadioButton radApple = new JRadioButton("Apple", true);
+final JRadioButton radMango = new JRadioButton("Mango");
+final JRadioButton radPeer = new JRadioButton("Peer");
+
+radApple.setMnemonic(KeyEvent.VK_C);
+radMango.setMnemonic(KeyEvent.VK_M);
+radPeer.setMnemonic(KeyEvent.VK_P);
+
+radApple.addItemListener(new ItemListener() {
+     public void itemStateChanged(ItemEvent e) {         
+            statusLabel.setText("Apple RadioButton: " 
+               + (e.getStateChange()==1?"checked":"unchecked"));
+         }           
+      });
+
+ //Group the radio buttons.
+      ButtonGroup group = new ButtonGroup();
+      
+      group.add(radApple);
+      group.add(radMango);
+      group.add(radPeer);
+
+
+  final JCheckBox chkApple = new JCheckBox("Apple");
+      final JCheckBox chkMango = new JCheckBox("Mango");
+      final JCheckBox chkPeer = new JCheckBox("Peer");
+
+      chkApple.setMnemonic(KeyEvent.VK_C);
+      chkMango.setMnemonic(KeyEvent.VK_M);
+      chkPeer.setMnemonic(KeyEvent.VK_P);
+
+      chkApple.addItemListener(new ItemListener() {
+         public void itemStateChanged(ItemEvent e) {         
+            statusLabel.setText("Apple Checkbox: " 
+               + (e.getStateChange()==1?"checked":"unchecked"));
+         }           
+      });
+
+
+
+ headerLabel.setText("Control in action: JComboBox"); 
+      final DefaultComboBoxModel fruitsName = new DefaultComboBoxModel();
+
+      fruitsName.addElement("Apple");
+      fruitsName.addElement("Grapes");
+      fruitsName.addElement("Mango");
+      fruitsName.addElement("Peer");
+
+      final JComboBox fruitCombo = new JComboBox(fruitsName);    
+      fruitCombo.setSelectedIndex(0);
+
+      JScrollPane fruitListScrollPane = new JScrollPane(fruitCombo);    
+      JButton showButton = new JButton("Show");
+
+      showButton.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) { 
+            String data = "";
+            if (fruitCombo.getSelectedIndex() != -1) {                     
+               data = "Fruits Selected: " 
+                  + fruitCombo.getItemAt
+                  (fruitCombo.getSelectedIndex());             
+            }              
+            statusLabel.setText(data);
+         }
+      }); 
+
+
+    final DefaultListModel fruitsName = new DefaultListModel();
+
+      fruitsName.addElement("Apple");
+      fruitsName.addElement("Grapes");
+      fruitsName.addElement("Mango");
+      fruitsName.addElement("Peer");
+
+      final JList fruitList = new JList(fruitsName);
+      fruitList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+      fruitList.setSelectedIndex(0);
+      fruitList.setVisibleRowCount(3);        
+
+      JScrollPane fruitListScrollPane = new JScrollPane(fruitList);    
+      final DefaultListModel vegName = new DefaultListModel();
+
+      vegName.addElement("Lady Finger");
+      vegName.addElement("Onion");
+      vegName.addElement("Potato");
+      vegName.addElement("Tomato");
+
+      final JList vegList = new JList(vegName);
+      vegList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+      vegList.setSelectedIndex(0);
+      vegList.setVisibleRowCount(3);        
+
+      JScrollPane vegListScrollPane = new JScrollPane(vegList);       
+      JButton showButton = new JButton("Show");
+
+      showButton.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) { 
+            String data = "";
+            if (fruitList.getSelectedIndex() != -1) {                     
+               data = "Fruits Selected: " + fruitList.getSelectedValue(); 
+               statusLabel.setText(data);
+            }
+            if(vegList.getSelectedIndex() != -1){
+               data += " Vegetables selected: ";
+               for(Object vegetable:vegList.getSelectedValues()){
+                  data += vegetable + " ";
+               }
+            }
+            statusLabel.setText(data);
+         }
+      }); 
+
+
+
+JOptionPane.showMessageDialog(mainFrame, "Welcome to TutorialsPoint.com");
+
+javaButton.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            int output = JOptionPane.showConfirmDialog(mainFrame, "Click any button", "TutorialsPoint.com", JOptionPane.YES_NO_OPTION);
+            if(output == JOptionPane.YES_OPTION){
+               statusLabel.setText("Yes selected.");
+            } else if(output == JOptionPane.NO_OPTION){
+               statusLabel.setText("No selected.");
+            }
+         }
+});
+
+
+
+----------------------------------------------------
+Border
+	The class BorderLayout arranges the components to fit in the five regions: east, west, north, south and center. Each region is can contain only one component and each component in each region is identified by the corresponding constant NORTH, SOUTH, EAST, WEST, and CENTER.
+      Panel panel = new Panel();
+      panel.setBackground(Color.darkGray);
+      panel.setSize(300,300);
+      BorderLayout layout = new BorderLayout();
+      layout.setHgap(10);
+      layout.setVgap(10);
+      panel.setLayout(layout);        
+	  
+      panel.add(new Button("Center"),BorderLayout.CENTER);
+      panel.add(new Button("Line Start"),BorderLayout.LINE_START); 
+      panel.add(new Button("Line End"),BorderLayout.LINE_END);
+      panel.add(new Button("East"),BorderLayout.EAST);   
+      panel.add(new Button("West"),BorderLayout.WEST); 
+      panel.add(new Button("North"),BorderLayout.NORTH); 
+      panel.add(new Button("South"),BorderLayout.SOUTH); 
+      controlPanel.add(panel);
+Card
+	The CardLayout object treats each component in the container as a card. Only one card is visible at a time.
+Flow
+	The class FlowLayout components in a left-to-right flow.
+Grid
+	The class GridLayout arranges components in a rectangular grid.
+GridBag
+	The class GridBagLayout arranges components in a horizontal and vertical manner.
+
+   Panel panel = new Panel();
+      panel.setBackground(Color.darkGray);
+      panel.setSize(300,300);
+      GridBagLayout layout = new GridBagLayout();
+
+      panel.setLayout(layout);        
+      GridBagConstraints gbc = new GridBagConstraints();
+
+      gbc.fill = GridBagConstraints.HORIZONTAL;
+      gbc.gridx = 0;
+      gbc.gridy = 0;
+      panel.add(new Button("Button 1"),gbc);
+
+      gbc.gridx = 1;
+      gbc.gridy = 0;
+      panel.add(new Button("Button 2"),gbc); 
+
+      gbc.fill = GridBagConstraints.HORIZONTAL;
+      gbc.ipady = 20;   
+      gbc.gridx = 0;
+      gbc.gridy = 1;
+      panel.add(new Button("Button 3"),gbc); 
+
+      gbc.gridx = 1;
+      gbc.gridy = 1;       
+      panel.add(new Button("Button 4"),gbc);  
+
+      gbc.gridx = 0;
+      gbc.gridy = 2;      
+      gbc.fill = GridBagConstraints.HORIZONTAL;
+      gbc.gridwidth = 2;
+      panel.add(new Button("Button 5"),gbc);  
+
+      controlPanel.add(panel);
+
+
+
+
+----------------------------------------------------------
+Events.
+
+//	vegList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+
+   final DefaultListModel fruitsName = new DefaultListModel();
+
+      fruitsName.addElement("Apple");
+      fruitsName.addElement("Grapes");
+      fruitsName.addElement("Mango");
+      fruitsName.addElement("Peer");
+
+      final JList fruitList = new JList(fruitsName);
+      fruitList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+      fruitList.setSelectedIndex(0);
+      fruitList.setVisibleRowCount(3);        
+
+      JScrollPane fruitListScrollPane = new JScrollPane(fruitList);   
+
+showButton.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) { 
+            String data = "";
+            if (fruitList.getSelectedIndex() != -1) {                     
+               data = "Fruits Selected: " + fruitList.getSelectedValue(); 
+               statusLabel.setText(data);
+            }
+            if(vegList.getSelectedIndex() != -1){
+               data += " Vegetables selected: ";
+               for(Object vegetable:vegList.getSelectedValues()){
+                  data += vegetable + " ";
+               }
+            }
+            statusLabel.setText(data);
+         }
+      }); 
+
+
+
+ controlPanel.add(fruitListScrollPane); 
+
+
+----------------------------
+
+JComboBox()
+JComboBox(ComboBoxModel aModel)
+JComboBox(Object[] items)
+JComboBox(Vector<?> items)
+
+
+  final DefaultComboBoxModel fruitsName = new DefaultComboBoxModel();
+
+      fruitsName.addElement("Apple");
+      fruitsName.addElement("Grapes");
+      fruitsName.addElement("Mango");
+      fruitsName.addElement("Peer");
+
+      final JComboBox fruitCombo = new JComboBox(fruitsName);    
+      fruitCombo.setSelectedIndex(0);
+
+      JScrollPane fruitListScrollPane = new JScrollPane(fruitCombo);    
+      JButton showButton = new JButton("Show");
+
+      showButton.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) { 
+            String data = "";
+            if (fruitCombo.getSelectedIndex() != -1) {                     
+               data = "Fruits Selected: " 
+                  + fruitCombo.getItemAt
+                  (fruitCombo.getSelectedIndex());             
+            }              
+            statusLabel.setText(data);
+         }
+      }); 
+      controlPanel.add(fruitListScrollPane);    
+
+
+
+   SpinnerModel spinnerModel = new SpinnerNumberModel(10, //initial value
+         0, //min
+         100, //max
+         1);//step
+      JSpinner spinner = new JSpinner(spinnerModel);
+      spinner.addChangeListener(new ChangeListener() {
+         public void stateChanged(ChangeEvent e) {
+            statusLabel.setText("Value : " + ((JSpinner)e.getSource()).getValue());
+         }
+      });
+      controlPanel.add(spinner);
+
+
+    JSlider slider = new JSlider(JSlider.HORIZONTAL,0,100,10);
+      
+      slider.addChangeListener(new ChangeListener() {
+         public void stateChanged(ChangeEvent e) {
+            statusLabel.setText("Value : " + ((JSlider)e.getSource()).getValue());
+         }
+      });
+      controlPanel.add(slider);      
+
+
+     textField  = new JTextField(10);
+      textField.addKeyListener(new CustomKeyListener());
+      JButton okButton = new JButton("OK");
+      
+      okButton.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            statusLabel.setText("Entered text: " + textField.getText());                
+         }
+      });
+      controlPanel.add(textField);
+      controlPanel.add(okButton);    
+      mainFrame.setVisible(true);  
+   }
+   class CustomKeyListener implements KeyListener{
+      public void keyTyped(KeyEvent e) {
+      }
+      public void keyPressed(KeyEvent e) {
+         if(e.getKeyCode() == KeyEvent.VK_ENTER){
+            statusLabel.setText("Entered text: " + textField.getText());
+         }
+      }
+      public void keyReleased(KeyEvent e) {
+      }   
+   }
+
+
+
+  JPanel panel = new JPanel();      
+      panel.setBackground(Color.magenta);
+      panel.setLayout(new FlowLayout());        
+      panel.addMouseListener(new CustomMouseListener());
+
+      JLabel msglabel = 
+      new JLabel("Welcome to TutorialsPoint SWING Tutorial.",JLabel.CENTER);        
+      panel.add(msglabel);
+
+      msglabel.addMouseListener(new CustomMouseListener());
+      panel.add(msglabel);
+
+      controlPanel.add(panel);
+      mainFrame.setVisible(true);  
+   }
+   class CustomMouseListener implements MouseListener {
+      public void mouseClicked(MouseEvent e) {
+         statusLabel.setText("Mouse Clicked: ("+e.getX()+", "+e.getY() +")");
+      }
+      public void mousePressed(MouseEvent e) {
+      }
+      public void mouseReleased(MouseEvent e) {
+      }
+      public void mouseEntered(MouseEvent e) {
+      }
+      public void mouseExited(MouseEvent e) {
+      }
+   }
+
+
+   JButton okButton = new JButton("OK");
+      JButton cancelButton = new JButton("Cancel");
+   
+      okButton.addFocusListener(new CustomFocusListener());  
+      cancelButton.addFocusListener(new CustomFocusListener());  
+   
+      controlPanel.add(okButton);
+      controlPanel.add(cancelButton);     
+      mainFrame.setVisible(true);  
+   }
+   class CustomFocusListener implements FocusListener{
+      public void focusGained(FocusEvent e) {
+         statusLabel.setText(statusLabel.getText() 
+            + e.getComponent().getClass().getSimpleName() + " gained focus. ");
+      }
+      public void focusLost(FocusEvent e) {
+         statusLabel.setText(statusLabel.getText() 
+            + e.getComponent().getClass().getSimpleName() + " lost focus. ");
+      }
+   }
+
+WindowListener - windowClosing
+ActionListener - actionPerformed
+ItemListener - itemStateChanged
+ChangeListener - stateChanged
+KeyListener - keyTyped, keyReleased
+MouseListener -	mouseClicked,mousePressed,mouseReleased,mouseEntered,mouseExited
+FocusListener - focusGained, focusLost
+
+
