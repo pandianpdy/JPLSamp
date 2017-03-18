@@ -1,0 +1,42 @@
+Date: 18-03-2017
+
+Single Account
+	Entry
+		Bank Details Entry
+		Customer Details Entry
+		Transaction Entry
+
+	Report
+		Balance Single a/c
+		Balance Multi a/c
+		Balance details
+
+Menu
+    1. Bank
+    2. Customer
+    3. Transaction
+    4. Balance 
+    5. Balance All
+    6. Balance Details
+
+Classes
+    Bank
+    Customer
+    Transaction
+
+Bank
+    String bankname;
+    String address;
+    String ifcno;
+    String acno;
+
+Customer 
+    String name;
+    String address;
+
+Transaction 
+    int slno;
+    String date;
+    double dr;
+    double cr;
+        
